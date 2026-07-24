@@ -34,7 +34,9 @@
                             </td>
                             <td>{{ $servicio->user->name }}</td>
                             <td>
+                                <a href="{{ route('servicios.edit', $servicio) }}" class="btn btn-warning btn-sm">Editar</a>
                                 <form action="{{ route('servicios.destroy', $servicio) }}" method="POST"
+                                      style="display:inline"
                                       onsubmit="return confirm('¿Eliminar este servicio?')">
                                     @csrf
                                     @method('DELETE')

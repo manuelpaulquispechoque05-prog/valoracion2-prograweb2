@@ -39,6 +39,27 @@ class ServicioController extends Controller
             ->with('success', 'Servicio registrado correctamente.');
     }
 
+    public function edit(Servicio $servicio): View
+    {
+        return view('servicios.edit', compact('servicio'));
+    }
+
+    public function update(Request $request, Servicio $servicio): RedirectResponse
+    {
+        $validated = $request->validate([
+            'nombre'            => 'required|string|max:100',
+            'descripcion'       => 'nullable|string',
+            'precio'            => 'required|numeric|min:0',
+            'duracion_estimada' => 'required|integer|min:1',
+            'estado'            => 'required|string|max:30',
+        ]);
+
+        $servicio->update($validated);
+
+        return redirect()->route('servicios.index')
+            ->with('success', 'Servicio actualizado correctamente.');
+    }
+
     public function destroy(Servicio $servicio): RedirectResponse
     {
         $servicio->delete();
