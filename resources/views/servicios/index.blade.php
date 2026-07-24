@@ -12,8 +12,8 @@
         </div>
     @else
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary">
                     <tr>
                         <th>Servicio</th>
                         <th>Precio</th>
@@ -34,9 +34,9 @@
                             </td>
                             <td>{{ $servicio->user->name }}</td>
                             <td>
-                                <a href="{{ route('servicios.edit', $servicio) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{ route('servicios.edit', $servicio) }}" class="btn btn-primary btn-sm">Editar</a>
                                 <form action="{{ route('servicios.destroy', $servicio) }}" method="POST"
-                                      style="display:inline"
+                                      class="d-inline"
                                       onsubmit="return confirm('¿Eliminar este servicio?')">
                                     @csrf
                                     @method('DELETE')
